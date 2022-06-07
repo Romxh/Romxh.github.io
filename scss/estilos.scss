@@ -1,0 +1,111 @@
+@import './resets';
+@import './variables';
+
+@function weight($weight-name){
+    @return map-get($font-weights, $weight-name);
+}
+
+@mixin flexCenter($direction){
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: $direction;
+}
+
+@mixin theme($light-theme: true){
+    @if $light-theme {
+        background: lighten($primary-color, 100%);
+        color: darken($text-color, 100%);
+    }
+}
+
+@mixin mobile {
+    @media screen and(max-width: $mobile){
+      @content;  
+    }
+}
+
+body {
+    background: "assets/logoblob.png";
+    color: $text-color;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10%, 70%, 20%;
+    grid-column-gap: 4px;
+    grid-row-gap: 4px; 
+}
+
+.main {
+  @include flexCenter(column);
+    width: 80%;
+    margin: 0 auto;
+    
+    #{&}__title {
+        font-weight: weight(bold);
+        color: seagreen;
+         font-size: 32px;
+         font-size: 2rem;
+                
+        &:hover {
+            color:pink;
+        }
+    }
+    #{&}__main__paragraph {
+        @extend .main__title;
+
+        }
+    }
+    @include mobile{
+        flex-direction: column;
+        &:hover {
+            color:$accent-color;
+        }
+    }
+
+.light {
+    @include theme($light-theme:true);
+}
+
+.imagenfondo{
+position:inherit;
+}
+
+.bd-placeholder-img{
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px){
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+  .footer {
+    background: #061D25;
+    padding: 10px 0;
+    position: inherit;
+  }
+  
+  
+  .footer a {
+    color: #70726F;
+    font-size: 20px; 
+    padding: 10px;
+    border-right: 1px solid #70726F; 
+    -webkit-transition: all .5s ease; 
+    transition: all .5s ease; 
+  }
+  
+  .footer a:first-child { 
+    border-left: 1px solid #70726F;
+  }
+  
+  .footer a:hover {
+    color: white;
+  }
+
+  /*# sourceMappingURL=estilos.css.map */
